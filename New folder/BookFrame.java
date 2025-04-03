@@ -346,30 +346,7 @@ public class BookFrame {
             showError("Database Error: " + e.getMessage());
         }
     }
-    // Add to BookFrame.java
-    private void connectToServer() {
-        new SwingWorker<String, Void>() {
-            @Override
-            protected String doInBackground() throws Exception {
-                try (Socket socket = new Socket("localhost", 8080);
-                     PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-                     BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
-
-                    out.println("SEARCH:Title:" + searchField.getText());
-                    return in.readLine();
-                }
-            }
-            @Override
-            protected void done() {
-                try {
-                    String response = get();
-                    // Process server response
-                } catch (Exception e) {
-                    showError("Server communication error");
-                }
-            }
-        }.execute();
-    }
+  
     private void searchBooks() {
         String searchType = (String)searchTypeCombo.getSelectedItem();
         String searchText = searchField.getText().trim();
