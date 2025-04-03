@@ -13,7 +13,7 @@ Installation & SetupPrerequisitesInstall Java JDK (version 8 or above)
 Install MySQL
 Install Git (optional but recommended)
 Steps to Run the ProjectClone the repository:
-git clone https://github.com/your-username/book-management-system.git
+git clone https://github.com/Ayush-NITKKR/book-management-system.git
 cd book-management-systemSet up the database:
 Create a MySQL database and import the provided SQL script.
 Update database credentials in the configuration file.
