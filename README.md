@@ -34,7 +34,7 @@ A Java-based application that allows users to manage a collection of books, incl
 ## Setup Instructions
 
 ### 1. *Clone the repository*:
-   bash
+   ---bash
    git clone <repository_url>
    cd <repository_folder>
 
