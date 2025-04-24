@@ -53,7 +53,7 @@ CREATE TABLE books (
   private static final String DB_USERNAME = "root";
   private static final String DB_PASSWORD = "Crossworld@123";
 
-### 4. Rum The Application 
+### 4. Run The Application 
     javac BookFrame.java
     java BookFrame
 
