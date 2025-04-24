@@ -33,12 +33,12 @@ A Java-based application that allows users to manage a collection of books, incl
 
 ## Setup Instructions
 
-###1. *Clone the repository*:
+1. *Clone the repository*:
    bash
    git clone <repository_url>
    cd <repository_folder>
 
-### Setup The Database
+### 2.Setup The Database
 CREATE DATABASE book_management;
 CREATE TABLE books (
     bookId INT AUTO_INCREMENT PRIMARY KEY,
