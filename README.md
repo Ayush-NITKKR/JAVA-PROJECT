@@ -4,6 +4,13 @@ A modern and visually appealing **Java Swing-based Book Management System** that
 
 ---
 
+## Team Members
+- Ayush Tiwari
+- Vishal Sahu
+- Rahul Gupta
+- Rahul Kumbhkar
+---
+
 ## 🗂️ Project Structure
 
 ```
@@ -113,13 +120,6 @@ public class Main {
         new BookFrame();
     }
 }
-```
-## Team Members
--- Ayush Tiwari
--- Vishal Sahu
--- Rahul Gupta
--- Rahul Kumbhkar
----
 
 ## 📌 Future Improvements
 - Add export to PDF/Excel
