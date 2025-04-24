@@ -22,6 +22,7 @@ class ClientHandler extends Thread {
 
     public ClientHandler(Socket socket) {
         this.socket = socket;
+        initializeDatabase(); // 👈 Added: Ensure DB & table exist before proceeding
     }
 
     public void run() {
@@ -51,6 +52,37 @@ class ClientHandler extends Thread {
             System.out.println("Client error: " + e.getMessage());
         } finally {
             try { socket.close(); } catch (IOException e) { }
+        }
+    }
+
+    private void initializeDatabase() {
+        String dbName = "library";
+        String rootUrl = "jdbc:mysql://localhost:3306/";
+        String user = "root";
+        String pass = "Crossworld@123";
+
+        try (Connection conn = DriverManager.getConnection(rootUrl, user, pass);
+             Statement stmt = conn.createStatement()) {
+
+            // Create database if not exists
+            stmt.executeUpdate("CREATE DATABASE IF NOT EXISTS " + dbName);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try (Connection conn = DriverManager.getConnection(rootUrl + dbName, user, pass);
+             Statement stmt = conn.createStatement()) {
+
+            // Create users table if not exists
+            String createTable = "CREATE TABLE IF NOT EXISTS users (" +
+                    "id INT AUTO_INCREMENT PRIMARY KEY, " +
+                    "username VARCHAR(50) NOT NULL UNIQUE, " +
+                    "password VARCHAR(255) NOT NULL)";
+            stmt.executeUpdate(createTable);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
