@@ -1,109 +1,143 @@
 # 📚 Book Management System
 
-A modern and user-friendly **Java Swing-based application** for managing book records, including **Add**, **View**, **Search (including by price range)**, **Update**, and **Delete** functionalities, integrated with a **MySQL database**. This project is ideal for library inventory control, small bookstores, and academic demonstration purposes.
+A modern and visually appealing **Java Swing-based Book Management System** that integrates seamlessly with a MySQL database. This project supports all CRUD operations – Add, View, Search, Update, and Delete book records.
 
 ---
 
-## 🚀 Features
+## 🗂️ Project Structure
 
-- ✅ Add new book records with full details.
-- 📄 View all books in a dynamic table.
-- 🔍 Search books by:
-  - Title
-  - Author
-  - Publisher
-  - Price Range
-- ✏️ Update existing book entries.
-- ❌ Delete book records securely.
-- 💾 MySQL integration for persistent storage.
-- 🎨 Styled Java Swing GUI for better usability.
-
----
-
-## 🛠️ Technologies Used
-
-- **Java Swing** (GUI)
-- **MySQL** (Backend Database)
-- **JDBC** (Java Database Connectivity)
-- **NetBeans / IntelliJ / Eclipse** (any Java IDE)
-- **MVC Design Pattern** (loosely followed)
-
----
-
-## 🗃️ Project Structure
-
-```plaintext
+```
 brm/
-├── Book2.java       # POJO class representing a Book entity
-├── BookFrame.java   # GUI class containing all UI components and logic
-└── Main.java        # Entry point of the application
+├── Book2.java         # POJO representing a book
+├── BookDao2.java      # Data Access Object for handling all DB operations
+├── BookFrame.java     # Java Swing UI to display and manage books
+└── Main.java          # Main class to launch the application
 ```
 
 ---
 
-## ⚙️ How to Run
+## 🔧 Features
 
-1. **Clone the repository**:
+- Add a new book with details like ID, Title, Price, Author, Publisher.
+- View all books in a styled JTable.
+- Search books by title, author, publisher, or even by price range.
+- Update existing book details dynamically from the UI.
+- Delete any book record with confirmation.
+- Clean and intuitive UI using Java Swing components.
+- MySQL integration for real-time database storage and retrieval.
+
+---
+
+## 🖥️ Technologies Used
+
+- Java (JDK 8+)
+- Java Swing (GUI)
+- MySQL (as backend DB)
+- JDBC (for database connection)
+- MVC Architecture
+
+---
+
+## 🏗️ Setup Instructions
+
+1. **Clone the Repository**
    ```bash
    git clone https://github.com/your-username/book-management-system.git
-   cd book-management-system
    ```
 
-2. **Setup the MySQL Database**:
+2. **Import into IDE**
+   - Open the project in **IntelliJ IDEA** or **Eclipse**.
 
-   ```sql
-   CREATE DATABASE bookdb;
-
-   USE bookdb;
-
-   CREATE TABLE books (
+3. **Setup MySQL Database**
+   - Create a database named: `bookdb`
+   - Run the following table schema:
+     ```sql
+     CREATE TABLE books (
        bookId INT PRIMARY KEY,
-       title VARCHAR(255),
+       title VARCHAR(100),
        price DOUBLE,
-       author VARCHAR(255),
-       publisher VARCHAR(255)
-   );
-   ```
-
-3. **Configure the JDBC connection** inside `BookFrame.java`:
-   ```java
-   String url = "jdbc:mysql://localhost:3306/bookdb";
-   String user = "root";
-   String password = "yourpassword";
-   ```
-
-4. **Compile and Run**:
-   - Use any Java IDE (like IntelliJ, NetBeans) to compile and run `Main.java`.
-   - Or, use the terminal:
-     ```bash
-     javac brm/*.java
-     java brm.Main
+       author VARCHAR(100),
+       publisher VARCHAR(100)
+     );
      ```
+
+4. **Update DB Credentials**
+   - Open `BookDao2.java` and set your:
+     ```java
+     String url = "jdbc:mysql://localhost:3306/bookdb";
+     String username = "your_mysql_username";
+     String password = "your_mysql_password";
+     ```
+
+5. **Run the App**
+   - Execute `Main.java` and the UI should appear.
 
 ---
 
 ## 📸 Screenshots
 
-> *(Add screenshots of your GUI application here once available — table view, add book form, etc.)*
+> _(Add your screenshots here with image markdown)_  
+> Example:  
+> ![Book Management System UI](screenshots/main_ui.png)
 
 ---
 
-## 📌 Future Enhancements
+## 📑 Class Descriptions
 
-- 📦 Export book data to PDF/Excel.
-- 🔐 Add user authentication.
-- 🌐 Migrate to JavaFX or a web-based UI.
-- 📱 Build an Android version using Java/Kotlin.
+### ✅ `Book2.java`
+Defines the book entity with attributes and getters/setters:
+- `int bookId`
+- `String title`
+- `double price`
+- `String author`
+- `String publisher`
+
+### ✅ `BookDao2.java`
+Handles all database transactions:
+- Insert, Update, Delete
+- Search by title/author/publisher/price
+- View all books
+
+### ✅ `BookFrame.java`
+Builds the GUI using Swing:
+- Form panel to add/update book
+- JTable to list all records
+- Search bar for filtering
+- Buttons for actions (Add, Update, Delete, Clear)
+
+### ✅ `Main.java`
+Launches the main UI window using:
+```java
+public class Main {
+    public static void main(String[] args) {
+        new BookFrame();
+    }
+}
+```
+## Team Members
+-- Ayush Tiwari
+-- Vishal Sahu
+-- Rahul Gupta
+-- Rahul Kumbhkar
+---
+
+## 📌 Future Improvements
+- Add export to PDF/Excel
+- Add login functionality
+- Implement pagination for large datasets
+- Use Prepared Statements to prevent SQL injection
 
 ---
 
 ## 🙌 Author
 
-**Rahul** – MCA Student and Java Developer  
-🔗 [LinkedIn](#) • [GitHub](#)
+- **Rahul** – MCA Student  
+  _GitHub: [your-username](https://github.com/your-username)_
 
 ---
 
-## 📄 License
+## 📃 License
 
-This project is open-source and available under the [MIT License](LICENSE).
+This project is open-source and free to use.
+
+---
