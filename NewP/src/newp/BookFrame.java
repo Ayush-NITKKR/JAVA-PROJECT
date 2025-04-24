@@ -1,4 +1,4 @@
-package brm;
+
 
 import java.awt.*;
 import java.awt.event.*;
@@ -35,7 +35,7 @@ class Book {
     public String getPublisher() { return publisher; }
 }
 
-public class BookFrame {
+public class BookFrame extends JFrame{
     private Connection con;
     private JTextField[] insertFields;
     private JTable table;
@@ -52,6 +52,7 @@ public class BookFrame {
     private final Font LABEL_FONT = new Font("Segoe UI", Font.PLAIN, 14);
 
     public BookFrame() {
+//        setVisible(true);
         initializeDatabase();
         createAndShowGUI();
     }
@@ -81,7 +82,7 @@ public class BookFrame {
         JFrame frame = new JFrame("Modern Book Manager");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1100, 750);
-        frame.setLocationRelativeTo(null);
+        frame.setLocationRelativeTo(null);// window centre me khulti hai
 
         // Main panel with gradient background
         JPanel mainPanel = new JPanel(new BorderLayout()) {
@@ -89,15 +90,16 @@ public class BookFrame {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 Graphics2D g2d = (Graphics2D) g;
-                Color color1 = new Color(240, 240, 240);
-                Color color2 = new Color(220, 220, 220);
+                Color color1 = new Color(240, 240, 240);//light gray
+                Color color2 = new Color(220, 220, 220);// dark gray
                 GradientPaint gp = new GradientPaint(0, 0, color1, 0, getHeight(), color2);
                 g2d.setPaint(gp);
                 g2d.fillRect(0, 0, getWidth(), getHeight());
             }
         };
-
         // Header
+
+
         JLabel headerLabel = new JLabel("BOOK MANAGEMENT SYSTEM", SwingConstants.CENTER);
         headerLabel.setFont(HEADER_FONT);
         headerLabel.setForeground(PRIMARY_COLOR);
@@ -118,7 +120,7 @@ public class BookFrame {
         frame.add(mainPanel);
         frame.setVisible(true);
     }
-
+// ayush tiwari
     private JPanel createAddBookPanel() {
         JPanel panel = new JPanel(new GridBagLayout());
         panel.setOpaque(false);
@@ -166,7 +168,7 @@ public class BookFrame {
 
         return panel;
     }
-
+// rahul Gupta
     private JPanel createViewBooksPanel() {
         JPanel panel = new JPanel(new BorderLayout());
         panel.setOpaque(false);
@@ -346,7 +348,6 @@ public class BookFrame {
             showError("Database Error: " + e.getMessage());
         }
     }
-  
     private void searchBooks() {
         String searchType = (String)searchTypeCombo.getSelectedItem();
         String searchText = searchField.getText().trim();
@@ -535,14 +536,5 @@ public class BookFrame {
         JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            try {
-                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                new BookFrame();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-    }
+
 }
