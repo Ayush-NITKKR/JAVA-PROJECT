@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.net.*;
@@ -8,38 +9,75 @@ public class LoginUI extends JFrame {
     private JPasswordField passwordField;
 
     public LoginUI() {
+        // Frame properties
         setTitle("Login");
-        setSize(300, 200);
+        setSize(400, 250);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLayout(null);
+        setLocationRelativeTo(null); // Center the window
+        setResizable(false);
 
-        JLabel userLabel = new JLabel("Username:");
-        userLabel.setBounds(30, 30, 80, 25);
-        add(userLabel);
-
-        usernameField = new JTextField();
-        usernameField.setBounds(120, 30, 130, 25);
-        add(usernameField);
-
-        JLabel passLabel = new JLabel("Password:");
-        passLabel.setBounds(30, 70, 80, 25);
-        add(passLabel);
-
-        passwordField = new JPasswordField();
-        passwordField.setBounds(120, 70, 130, 25);
-        add(passwordField);
-
-        JButton loginButton = new JButton("Login");
-        loginButton.setBounds(100, 110, 80, 25);
-        add(loginButton);
+        // Main panel with GridBagLayout
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridBagLayout());
+        panel.setBackground(new Color(240, 240, 240));
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         
-        JButton signupButton = new JButton("signup");
-        signupButton.setBounds(180, 110, 80, 25);
-        add(signupButton);
+        // GridBag constraints
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        
+        // Username Label and Text Field
+        JLabel userLabel = new JLabel("Username:");
+        userLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+        panel.add(userLabel, gbc);
+        
+        gbc.gridx = 1;
+        usernameField = new JTextField(15);
+        usernameField.setFont(new Font("Arial", Font.PLAIN, 14));
+        panel.add(usernameField, gbc);
 
+        // Password Label and Password Field
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        JLabel passLabel = new JLabel("Password:");
+        passLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+        panel.add(passLabel, gbc);
+        
+        gbc.gridx = 1;
+        passwordField = new JPasswordField(15);
+        passwordField.setFont(new Font("Arial", Font.PLAIN, 14));
+        panel.add(passwordField, gbc);
+
+        // Buttons: Login and Signup
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        
+        JButton loginButton = new JButton("Login");
+        loginButton.setFont(new Font("Arial", Font.BOLD, 14));
+        loginButton.setBackground(new Color(66, 133, 244));
+        loginButton.setForeground(Color.WHITE);
+        loginButton.setFocusPainted(false);
         loginButton.addActionListener(e -> login());
-        signupButton.addActionListener(e-> signup());
+        panel.add(loginButton, gbc);
 
+        gbc.gridy = 3;
+        JButton signupButton = new JButton("Sign Up");
+        signupButton.setFont(new Font("Arial", Font.BOLD, 14));
+        signupButton.setBackground(new Color(52, 168, 83));
+        signupButton.setForeground(Color.WHITE);
+        signupButton.setFocusPainted(false);
+        signupButton.addActionListener(e -> signup());
+        panel.add(signupButton, gbc);
+        
+
+        // Adding panel to the frame
+        add(panel);
+
+        // Set frame visibility
         setVisible(true);
     }
 
@@ -55,7 +93,7 @@ public class LoginUI extends JFrame {
             String response = in.readLine();
             if ("SUCCESS".equals(response)) {
                 JOptionPane.showMessageDialog(this, "Login successful!");
-                BookFrame x=new BookFrame();
+                BookFrame x = new BookFrame();
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Login failed!");
@@ -64,8 +102,8 @@ public class LoginUI extends JFrame {
             ex.printStackTrace();
         }
     }
-    
-    private void signup(){
+
+    private void signup() {
         dispose();
         new SignupForm();
     }
@@ -74,5 +112,3 @@ public class LoginUI extends JFrame {
         new LoginUI();
     }
 }
-
-
